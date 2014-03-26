@@ -238,7 +238,7 @@ function chat(param, s){
 			
 			if(bt.save){
 				dbrooms.updateById(res['_id'], {$inc: {'totalmessages':1}}, function(err, result){});
-				dbusers.update({'login':s.profile.login}, {$inc: {'mess_count':1}, $set: {'textcolor':color}});
+				//dbusers.update({'login':s.profile.login}, {$inc: {'mess_count':1}, $set: {'textcolor':color}});
 				dbhist.insert(insdat, savemess);			
 			} else {
 				savemess(true, {});			

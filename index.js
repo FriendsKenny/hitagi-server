@@ -1,3 +1,4 @@
+
 require.paths = ['/root/.node_modules'];
 var ios = require('socket.io'); 
 var mongo = require('mongoskin');
@@ -23,10 +24,10 @@ global.allRooms = {};
 global.login2nick = {};
 
 
-conffile.readConfig(function(data){
+conffile.readConfig(function(data){ 
 	config = data;
 
-	global.db = mongo.db(config['mongoServer']+':'+config['mongoPort']+'/'+config['mongoBaseName']+'?auto_reconnect');
+	global.db = mongo.db('mongodb://admin:123456@'+config['mongoServer']+':'+config['mongoPort']+'/'+config['mongoBaseName']+'?auto_reconnect');
 	global.dbusers = db.collection('users');
 	global.dbmess = db.collection('messages');
 	global.dbrooms = db.collection('rooms');
@@ -36,7 +37,9 @@ conffile.readConfig(function(data){
 	global.io = ios.listen(config['socketPort'] * 1);
 		
 	global.serverHost = config['serverIp'];
-		
+	//console.log('!!!!!!!!!!!!!!readConfig!!!!!!!!!!!!!!!!!');	
+	//console.log(global.db);
+	//console.log('!!!!!!!!!!!!!!readConfig!!!!!!!!!!!!!!!!!');//
 	// Очищаем сокеты - все юзеры разлогинены
 	dbusers.update({'socket': {$ne:''}}, {$set: {'socket':''}}, {'multi':true}, function(err,res){});
 	// Очищаем комнаты от юзеров
@@ -83,7 +86,8 @@ io.sockets.on('connection', function (socket) {
 });
 
 fserv.startHttp();
-	
-plugins.load('testbot.js');	
+	console.log('server start');
+	//console.log(plugins);
+plugins.load('testbot.js');	//console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
 	
 });

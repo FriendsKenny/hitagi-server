@@ -1,7 +1,7 @@
 var fs = require("fs");
-
+//console.log('!!!!!!!!!!!!!!');
 function readConfig(onOk){
-	fs.open("hitagiserver/server.cfg", "r", 0644, function(err, file_handle) {
+	fs.open("C:\\33333\\Dropbox\\prj\\chat\\server\\server.cfg", "r", 0644, function(err, file_handle) { 
 	if (!err) {
 		fs.read(file_handle, 10000, null, 'ascii', function(err, data) {
 			if (!err) {
@@ -27,12 +27,14 @@ function readConfig(onOk){
 				onOk(conf);	
 
 			} else {
-				console.log('Error: Can not read config file');
+				console.log('Error: Can not read config file1');
+				console.log(err);
 				return false;
 			}
 		});
 	} else {
-		console.log('Error: Can not open config file');
+		console.log('Error: Can not open config file2');
+		console.log(err);
 		return false;
 	}
 	});

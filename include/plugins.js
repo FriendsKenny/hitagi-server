@@ -18,6 +18,7 @@ function loadPlugin(filename){
 		
 		} else {
 			console.log('Error Load Module');
+			console.log(err);
 		}
 	});
 }

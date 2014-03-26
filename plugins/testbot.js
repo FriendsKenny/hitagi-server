@@ -50,7 +50,8 @@ function initBot(includes){
 				if(mess == '') m = 'Введите название песни, например: !песня страна лимония';
 				rec.toall = true;
 			} else if(com=='погода'){
-				if(mess == '') 
+				m = 'забей на эту функцию';
+				/*if(mess == '') 
 					m = 'Введите город, например: !погода москва';
 				else {
 					mess = mess.toLowerCase();
@@ -65,7 +66,7 @@ function initBot(includes){
 						}
 					}
 		
-				}
+				}*/
 				rec.toall = true;			
 			} else {
 				m = 'Неизвестная команда "'+com+'"';
